@@ -1,0 +1,882 @@
+/* animatedLawTheme.css */
+
+/* Legal Color Palette */
+:root {
+    --parchment: #f5f0e6;
+    --deep-navy: #0a2342;
+    --burgundy: #6b0f1a;
+    --gold-accent: #c99700;
+    --ink-black: #1a1a1a;
+    --mahogany: #4e3620;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Base Styles */
+  .law-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--parchment);
+    padding: 2rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Times New Roman', serif;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="0.5"/></svg>');
+  }
+  
+  /* Floating Documents Background */
+  .floating-documents {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .document {
+    position: absolute;
+    width: 120px;
+    height: 160px;
+    background: rgba(245, 240, 230, 0.8);
+    border: 1px solid rgba(107, 15, 26, 0.3);
+    transform: rotate(5deg);
+    animation: float 8s ease-in-out infinite;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    opacity: 0.7;
+  }
+  
+  /* Keyframe Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(5deg); }
+    50% { transform: translateY(-20px) rotate(7deg); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+  
+  @keyframes swing {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+  
+  @keyframes stamp {
+    0% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+  }
+  
+  @keyframes write {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+  
+  @keyframes drip {
+    0% { transform: translateY(0) scaleY(0.2); opacity: 1; }
+    40% { transform: translateY(0) scaleY(1); opacity: 1; }
+    100% { transform: translateY(150px) scaleY(0.2); opacity: 0; }
+  }
+  
+  @keyframes rotateScales {
+    0%, 100% { transform: translate(-50%, -50%) rotate(-10deg); }
+    50% { transform: translate(-50%, -50%) rotate(10deg); }
+  }
+  
+  @keyframes underline {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+  
+  /* Main Content Layout */
+  .legal-wrapper {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    gap: 2rem;
+    z-index: 1;
+    position: relative;
+  }
+  
+  /* Parchment Form Container */
+  .parchment-form-container {
+    flex: 1;
+    background: var(--parchment);
+    padding: 3rem;
+    border-radius: 0;
+    box-shadow: 0 0 30px var(--shadow-color);
+    border: 1px solid rgba(107, 15, 26, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+  
+  .parchment-form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px var(--shadow-color);
+  }
+  
+  .parchment-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: var(--burgundy);
+  }
+  
+  /* Legal Form Elements */
+  .legal-form {
+    width: 100%;
+    position: relative;
+  }
+  
+  .legal-title {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+    color: var(--deep-navy);
+    position: relative;
+    font-weight: 700;
+    font-family: 'Georgia', serif;
+    display: inline-block;
+  }
+  
+  .legal-title .title-text {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .legal-title .title-underline {
+    display: block;
+    width: 0;
+    height: 3px;
+    background: var(--gold-accent);
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.6s ease;
+  }
+  
+  .parchment-form-container:hover .title-underline {
+    width: 100%;
+  }
+  
+  .form-group {
+    position: relative;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .legal-input, .legal-textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid rgba(74, 43, 124, 0.2);
+    border-radius: 0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: transparent;
+    color: var(--ink-black);
+    border-bottom: 2px solid var(--mahogany);
+    font-family: 'Times New Roman', serif;
+  }
+  
+  .legal-textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+  
+  .legal-label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: var(--mahogany);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    background: transparent;
+    padding: 0 0.5rem;
+    font-style: italic;
+  }
+  
+  .legal-input:focus,
+  .legal-textarea:focus {
+    outline: none;
+    border-bottom-color: var(--burgundy);
+    background: rgba(107, 15, 26, 0.03);
+  }
+  
+  .legal-input:focus + .legal-label,
+  .legal-textarea:focus + .legal-label,
+  .legal-input:not(:placeholder-shown) + .legal-label,
+  .legal-textarea:not(:placeholder-shown) + .legal-label {
+    top: -0.6rem;
+    left: 0.8rem;
+    font-size: 0.8rem;
+    background: var(--parchment);
+    color: var(--burgundy);
+    font-style: normal;
+    font-weight: bold;
+  }
+  
+  /* Animated Gavel */
+  .animated-gavel {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .gavel-head {
+    width: 30px;
+    height: 15px;
+    background: var(--mahogany);
+    position: relative;
+    animation: swing 2s ease-in-out infinite;
+    transform-origin: top center;
+    border-radius: 2px;
+  }
+  
+  .gavel-handle {
+    width: 8px;
+    height: 40px;
+    background: var(--deep-navy);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+  
+  /* Scales Animation */
+  .scales-animation {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+  }
+  
+  .scale-bar {
+    width: 100%;
+    height: 3px;
+    background: var(--mahogany);
+    position: relative;
+    top: 20px;
+  }
+  
+  .scale-left, .scale-right {
+    width: 15px;
+    height: 15px;
+    background: var(--burgundy);
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+  }
+  
+  .scale-left { 
+    left: 0; 
+    animation: float 3s ease-in-out infinite; 
+  }
+  .scale-right { 
+    right: 0; 
+    animation: float 3s ease-in-out infinite reverse; 
+  }
+  
+  /* Pen Animation */
+  .pen-animation {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .pen {
+    width: 25px;
+    height: 4px;
+    background: var(--deep-navy);
+    transform: rotate(45deg);
+    position: relative;
+  }
+  
+  .pen::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: -3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50% 50% 0 50%;
+    background: var(--burgundy);
+    transform: rotate(45deg);
+  }
+  
+  .ink-drops {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .ink-drop {
+    width: 8px;
+    height: 8px;
+    background: var(--deep-navy);
+    border-radius: 50%;
+    position: absolute;
+    animation: drip 1.5s ease-in infinite;
+  }
+  
+  .ink-drop:nth-child(1) { left: 0; animation-delay: 0s; }
+  .ink-drop:nth-child(2) { left: 10px; animation-delay: 0.3s; }
+  .ink-drop:nth-child(3) { left: -10px; animation-delay: 0.6s; }
+  
+  /* Enhanced Button Animation */
+  .legal-button {
+    width: 100%;
+    padding: 1rem;
+    background: var(--deep-navy);
+    color: white;
+    border: none;
+    border-radius: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Georgia', serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+  
+  .legal-button:hover {
+    background: var(--burgundy);
+    letter-spacing: 1px;
+  }
+  
+  .legal-button:active {
+    transform: translateY(1px);
+  }
+  
+  .legal-button .button-text {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .legal-button:hover .button-text {
+    animation: pulse 1.5s infinite;
+  }
+  
+  .ink-trail {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gold-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  
+  .legal-button:hover .ink-trail {
+    transform: scaleX(1);
+  }
+  
+  .legal-button .stamp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    color: var(--gold-accent);
+    font-weight: bold;
+    opacity: 0;
+    z-index: 3;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+  }
+  
+  .legal-button:hover .stamp {
+    animation: stamp 0.6s ease-out forwards;
+  }
+  
+  /* Animated Legal Library */
+  .legal-library {
+    flex: 1;
+    border: 1px solid rgba(107, 15, 26, 0.2);
+    box-shadow: 0 0 30px var(--shadow-color);
+    background: var(--parchment);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    min-height: 500px;
+  }
+  
+  .bookshelf {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    height: 100%;
+    padding-bottom: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+  }
+  
+  .book {
+    width: 40px;
+    background: var(--deep-navy);
+    border-left: 3px solid var(--gold-accent);
+    animation: float 4s ease-in-out infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .book:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 10px 20px var(--shadow-color);
+  }
+  
+  .rotating-scales {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 60px;
+    animation: rotateScales 8s ease-in-out infinite;
+  }
+  
+  .scale-base {
+    width: 20px;
+    height: 20px;
+    background: var(--mahogany);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .scale-beam {
+    width: 80px;
+    height: 3px;
+    background: var(--mahogany);
+    position: absolute;
+    top: 10px;
+    left: 0;
+  }
+  
+  .scale-left-pan, .scale-right-pan {
+    width: 20px;
+    height: 10px;
+    background: var(--burgundy);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+  }
+  
+  .scale-left-pan { left: 0; }
+  .scale-right-pan { right: 0; }
+  
+  /* Signature Animation */
+  .legal-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .signature-line {
+    width: 200px;
+    height: 2px;
+    background: var(--mahogany);
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .signature-animation {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 0;
+    height: 30px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 30" preserveAspectRatio="none"><path d="M0,15 Q20,0 40,15 T80,15 T120,15 T160,15 T200,15" fill="none" stroke="%236b0f1a" stroke-width="2"/></svg>') no-repeat;
+    background-size: 200px 30px;
+    animation: write 2s ease-in-out forwards;
+    animation-delay: 1s;
+  }
+  
+  /* Focus Animations */
+  .form-group.focused .legal-label {
+    animation: pulse 1.5s infinite;
+  }
+  
+  .form-group.focused .legal-input, 
+  .form-group.focused .legal-textarea {
+    border-bottom-width: 3px;
+    background: rgba(107, 15, 26, 0.05);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .legal-wrapper {
+      flex-direction: column;
+    }
+    
+    .legal-library {
+      height: 300px;
+      min-height: auto;
+    }
+    
+    .rotating-scales {
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+    
+    .parchment-form-container {
+      padding: 2rem;
+    }
+    
+    .legal-title {
+      font-size: 1.8rem;
+    }
+  }
+  /* lawLibraryTheme.css */
+
+/* Modern Legal Typography */
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap');
+:root {
+  /* Color palette */
+  --parchment: #f5f0e6;
+  --deep-navy: #0a2342;
+  --burgundy: #6b0f1a;
+  --gold-accent: #c99700;
+  --ink-black: #1a1a1a;
+  --mahogany: #4e3620;
+  
+  /* Fonts */
+  --heading-font: 'Playfair Display', serif;
+  --body-font: 'Crimson Pro', serif;
+}
+
+/* Base Styles */
+.law-container {
+  font-family: var(--body-font);
+}
+
+.legal-title {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Enhanced Bookshelf */
+.bookshelf {
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+  height: 300px;
+  padding: 0 30px;
+  position: relative;
+}
+
+.book {
+  width: 50px;
+  position: relative;
+  border-radius: 2px 0 0 2px;
+  transform-origin: bottom;
+  animation: bookFloat 4s ease-in-out infinite;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.book:hover {
+  transform: translateY(-15px) rotate(5deg) !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+.book-spine {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: rgba(0,0,0,0.2);
+}
+
+.book-title {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: left top;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  opacity: 0.8;
+}
+
+.book-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.book:hover .book-glow {
+  opacity: 1;
+}
+
+@keyframes bookFloat {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* Animated Legal Objects */
+.legal-objects {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.rotating-scales {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 80px;
+  animation: scaleSwing 8s ease-in-out infinite;
+}
+
+.scale-base {
+  width: 25px;
+  height: 25px;
+  background: var(--mahogany);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scale-beam {
+  width: 100px;
+  height: 4px;
+  background: var(--mahogany);
+  position: absolute;
+  top: 15px;
+  left: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.scale-pan {
+  width: 25px;
+  height: 12px;
+  background: var(--burgundy);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+}
+
+.scale-pan.left { left: 0; }
+.scale-pan.right { right: 0; }
+
+.scale-glow {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 120px;
+  height: 60px;
+  background: radial-gradient(ellipse, rgba(201, 151, 0, 0.2), transparent 70%);
+  transform: translateX(-50%);
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes scaleSwing {
+  0%, 100% { transform: translate(-50%, -50%) rotate(-10deg); }
+  50% { transform: translate(-50%, -50%) rotate(10deg); }
+}
+
+/* Flying Gavel */
+.flying-gavel {
+  position: absolute;
+  top: 30%;
+  right: 20%;
+  animation: flyAcross 12s linear infinite;
+}
+
+.gavel-head {
+  width: 35px;
+  height: 18px;
+  background: var(--mahogany);
+  border-radius: 2px;
+  position: relative;
+  transform: rotate(45deg);
+  transform-origin: bottom right;
+  animation: gavelHit 4s ease-in-out infinite;
+}
+
+.gavel-handle {
+  width: 10px;
+  height: 50px;
+  background: var(--deep-navy);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(100%);
+  border-radius: 2px;
+}
+
+.gavel-sparkle {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes flyAcross {
+  0% { transform: translateX(100px) rotate(0); }
+  100% { transform: translateX(-100px) rotate(360deg); }
+}
+
+@keyframes gavelHit {
+  0%, 100% { transform: rotate(45deg); }
+  50% { transform: rotate(35deg); }
+}
+
+/* Glowing Lamp */
+.glowing-lamp {
+  position: absolute;
+  bottom: 20%;
+  left: 20%;
+}
+
+.lamp-base {
+  width: 20px;
+  height: 40px;
+  background: var(--gold-accent);
+  border-radius: 2px;
+  position: relative;
+}
+
+.lamp-light {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(ellipse, rgba(201, 151, 0, 0.4), transparent 70%);
+  transform: translateX(-50%);
+  animation: flicker 3s ease-in-out infinite alternate;
+}
+
+/* Floating Documents */
+.floating-documents {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.document {
+  position: absolute;
+  width: 80px;
+  height: 110px;
+  background: var(--parchment);
+  border: 1px solid rgba(107, 15, 26, 0.2);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  animation: floatDoc 8s ease-in-out infinite;
+}
+
+.doc1 {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0.5s;
+}
+
+.doc2 {
+  top: 30%;
+  right: 20%;
+  animation-delay: 1s;
+}
+
+.document-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(107, 15, 26, 0.1);
+  border: 2px dashed var(--burgundy);
+  transform: translate(-50%, -50%);
+  animation: rotateSeal 20s linear infinite;
+}
+
+.document-stamp {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: var(--gold-accent);
+  opacity: 0.8;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes floatDoc {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes rotateSeal {
+  0% { transform: translate(-50%, -50%) rotate(0); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1); }
+}

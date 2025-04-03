@@ -1,0 +1,348 @@
+/* heroSection.css */
+
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap');
+
+:root {
+  --deep-navy: #0a2342;
+  --burgundy: #6b0f1a;
+  --gold-accent: #c99700;
+  --parchment: #f5f0e6;
+  --light-gray: #e9ecef;
+  --dark-gray: #495057;
+}
+
+/* Base Styles */
+.hero-section {
+  position: relative;
+  padding: 6rem 2rem;
+  background-color: var(--parchment);
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Background Elements */
+.legal-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%230a2342" stroke-width="0.5" stroke-dasharray="5,5"/></svg>');
+  opacity: 0.05;
+  z-index: 1;
+}
+
+.floating-documents {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.document {
+  position: absolute;
+  width: 120px;
+  height: 160px;
+  background: rgba(245, 240, 230, 0.7);
+  border: 1px solid rgba(107, 15, 26, 0.2);
+  transform: rotate(5deg);
+  animation: float 8s ease-in-out infinite;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  opacity: 0.7;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(5deg); }
+  50% { transform: translateY(-20px) rotate(7deg); }
+}
+
+/* Hero Content */
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.title-line {
+  display: block;
+}
+
+.hero-subtext {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.25rem;
+  color: var(--dark-gray);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.highlight {
+  color: var(--burgundy);
+  font-weight: 500;
+  position: relative;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gold-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.highlight:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Buttons */
+.cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-primary {
+  background: var(--burgundy);
+  color: white;
+}
+
+.btn-primary .ink-trail {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gold-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(107, 15, 26, 0.2);
+}
+
+.btn-primary:hover .ink-trail {
+  transform: scaleX(1);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--deep-navy);
+  border: 2px solid var(--deep-navy);
+}
+
+.btn-outline .hover-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--deep-navy);
+  z-index: 1;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+
+.btn-outline:hover {
+  color: white;
+}
+
+.btn-outline:hover .hover-effect {
+  transform: scaleY(1);
+}
+
+/* Trust Badges */
+.trust-badges {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+  background: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Hero Image */
+.hero-image {
+  flex: 1;
+  position: relative;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 2;
+}
+
+.image-overlay {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--gold-accent);
+  border-radius: 8px;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.hero-image:hover .image-overlay {
+  top: -15px;
+  right: -15px;
+}
+
+/* Floating Annotations */
+.floating-annotation {
+  position: absolute;
+  z-index: 3;
+  animation: float 3s ease-in-out infinite;
+}
+
+.annotation-marker {
+  width: 12px;
+  height: 12px;
+  background: var(--burgundy);
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 3px var(--burgundy);
+}
+
+.annotation-text {
+  position: absolute;
+  white-space: nowrap;
+  left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--deep-navy);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.annotation-1 {
+  top: 30%;
+  left: -30px;
+  animation-delay: 0.3s;
+}
+
+.annotation-2 {
+  bottom: 20%;
+  right: -40px;
+  animation-delay: 0.6s;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  h1 {
+    font-size: 2.8rem;
+  }
+  
+  .hero-content {
+    max-width: 100%;
+    text-align: center;
+  }
+  
+  .cta-buttons {
+    justify-content: center;
+  }
+  
+  .trust-badges {
+    justify-content: center;
+  }
+  
+  .hero-image {
+    width: 100%;
+  }
+  
+  .floating-annotation {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subtext {
+    font-size: 1.1rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
